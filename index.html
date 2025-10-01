@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edu Vision</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0d59f2",
+              background: "#101622",
+              button: "#0F172A",
+            },
+            fontFamily: {
+              display: ["Lexend"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-background font-display text-slate-200 min-h-screen flex flex-col"
+  >
+    <!-- NAVBAR -->
+    <header
+      class="sticky top-0 z-10 border-b border-slate-800 bg-background/90 backdrop-blur-sm"
+    >
+      <div
+        class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+      >
+        <div class="flex items-center gap-4">
+          <div class="text-primary">
+            <svg
+              class="h-8 w-8"
+              fill="none"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </div>
+          <h2 class="text-lg font-bold text-white">Edu Vision</h2>
+        </div>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a class="text-sm font-medium hover:text-primary" href="#inicio">Inicio</a>
+          <a class="text-sm font-medium hover:text-primary" href="#cursos">Cursos</a>
+          <a class="text-sm font-medium hover:text-primary" href="#">Docente</a>
+          <a
+            class="text-sm font-medium px-4 py-2 rounded-lg bg-button hover:bg-slate-700 transition"
+            href="#"
+            >Login</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 hover:bg-slate-700 transition"
+          >
+            <span class="material-symbols-outlined text-xl text-slate-300">
+              settings
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="inicio"
+      class="section flex flex-1 flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8"
+    >
+      <div class="w-full max-w-2xl text-center">
+        <h1
+          class="text-4xl font-bold tracking-tighter text-white sm:text-5xl md:text-6xl"
+        >
+          Bienvenido a Edu Vision
+        </h1>
+        <p class="mx-auto mt-6 max-w-xl text-lg text-slate-400">
+          Una plataforma diseñada para el aprendizaje inclusivo, accesible para
+          todos los estudiantes. Personaliza tu experiencia y accede a nuestras
+          herramientas educativas adaptadas.
+        </p>
+
+        <div class="mt-8 flex items-center justify-center gap-4">
+          <audio class="w-full max-w-sm" controls>
+            <source src="audio/welcome.mp3" type="audio/mpeg" />
+            Tu navegador no soporta el elemento de audio.
+          </audio>
+        </div>
+      </div>
+
+      <!-- BOTONES -->
+      <div
+        class="mt-16 grid w-full max-w-4xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        <button
+          class="group flex flex-col items-center gap-3 rounded-lg bg-button p-6 text-center transition-all hover:bg-slate-700"
+        >
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 transition-colors group-hover:bg-primary"
+          >
+            <span
+              class="material-symbols-outlined text-2xl text-primary group-hover:text-white"
+              >contrast</span
+            >
+          </div>
+          <span class="font-semibold text-white">Modo de Alto Contraste</span>
+        </button>
+
+        <button
+          class="group flex flex-col items-center gap-3 rounded-lg bg-button p-6 text-center transition-all hover:bg-slate-700"
+        >
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 transition-colors group-hover:bg-primary"
+          >
+            <span
+              class="material-symbols-outlined text-2xl text-primary group-hover:text-white"
+              >hearing_disabled</span
+            >
+          </div>
+          <span class="font-semibold text-white">Lector de Pantalla</span>
+        </button>
+
+        <button
+          class="group flex flex-col items-center gap-3 rounded-lg bg-button p-6 text-center transition-all hover:bg-slate-700"
+        >
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 transition-colors group-hover:bg-primary"
+          >
+            <span
+              class="material-symbols-outlined text-2xl text-primary group-hover:text-white"
+              >text_fields</span
+            >
+          </div>
+          <span class="font-semibold text-white"
+            >Configuración de Tipografía</span
+          >
+        </button>
+
+        <button
+          class="group flex flex-col items-center gap-3 rounded-lg bg-button p-6 text-center transition-all hover:bg-slate-700"
+        >
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 transition-colors group-hover:bg-primary"
+          >
+            <span
+              class="material-symbols-outlined text-2xl text-primary group-hover:text-white"
+              >accessibility_new</span
+            >
+          </div>
+          <span class="font-semibold text-white">Panel de Accesibilidad</span>
+        </button>
+      </div>
+    </main>
+ <section id="cursos" class="section hidden flex flex-col gap-8">
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+      <div class="flex flex-col gap-2">
+        <h2 class="text-3xl font-bold tracking-tighter text-slate-900 dark:text-white">Nuestros Cursos</h2>
+        <p class="text-slate-600 dark:text-slate-400 text-base">
+          Explora cursos divertidos y accesibles para estudiantes jóvenes.
+        </p>
+      </div>
+      <button
+        class="sm:hidden flex items-center gap-2 rounded-lg bg-slate-100 dark:bg-slate-900/50 px-4 py-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+        <span class="material-symbols-outlined">filter_list</span>
+        <span>Filtros</span>
+      </button>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-4">
+      <aside class="hidden sm:block w-full md:w-1/4">
+        <div
+          class="sticky top-24 flex flex-col gap-6 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200/80 dark:border-slate-800/80">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Filtros</h3>
+          <div class="flex flex-col gap-4">
+            <div>
+              <label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="subject">Asignatura</label>
+              <select
+                class="form-select mt-1 block w-full rounded-lg bg-slate-100 dark:bg-slate-800 border-transparent focus:ring-primary focus:border-primary text-sm"
+                id="subject">
+                <option>Todas las asignaturas</option>
+                <option>Matemática</option>
+                <option>Ciencias</option>
+                <option>Historia</option>
+                <option>Arte</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="grade">Nivel</label>
+              <select
+                class="form-select mt-1 block w-full rounded-lg bg-slate-100 dark:bg-slate-800 border-transparent focus:ring-primary focus:border-primary text-sm"
+                id="grade">
+                <option>Todos los niveles</option>
+                <option>Inicial - 2° grado</option>
+                <option>3° - 5° grado</option>
+                <option>6° - 8° grado</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Accesibilidad</label>
+              <div class="mt-2 space-y-2">
+                <div class="flex items-center">
+                  <input class="form-checkbox h-4 w-4 rounded text-primary bg-slate-200 dark:bg-slate-700 border-transparent focus:ring-primary" id="screen-reader" type="checkbox"/>
+                  <label class="ml-2 text-sm text-slate-600 dark:text-slate-400" for="screen-reader">Compatible con lector de pantalla</label>
+                </div>
+                <div class="flex items-center">
+                  <input class="form-checkbox h-4 w-4 rounded text-primary bg-slate-200 dark:bg-slate-700 border-transparent focus:ring-primary" id="subtitles" type="checkbox"/>
+                  <label class="ml-2 text-sm text-slate-600 dark:text-slate-400" for="subtitles">Subtítulos</label>
+                </div>
+                <div class="flex items-center">
+                  <input class="form-checkbox h-4 w-4 rounded text-primary bg-slate-200 dark:bg-slate-700 border-transparent focus:ring-primary" id="audio-desc" type="checkbox"/>
+                  <label class="ml-2 text-sm text-slate-600 dark:text-slate-400" for="audio-desc">Descripciones de audio</label>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="inline-flex items-center justify-center rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark focus:ring-primary transition-colors">
+              Aplicar filtros
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <div class="flex-1 flex flex-col gap-8">
+        <div class="relative group w-full">
+          <span aria-hidden="true"
+            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors">
+            search
+          </span>
+          <input aria-label="Buscar cursos por título o palabra clave"
+            class="form-input w-full min-w-0 resize-none overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-900/50 text-slate-900 dark:text-slate-200 focus:outline-0 focus:ring-2 focus:ring-primary border-transparent h-12 placeholder:text-slate-500 pl-10 pr-4 text-base font-normal"
+            id="course-search" placeholder="Buscar cursos..." value="" />
+        </div>
+
+        <div class="grid gap-8">
+          <!-- Curso 1 -->
+          <article
+            class="flex flex-col md:flex-row items-start gap-6 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200/80 dark:border-slate-800/80 hover:border-primary/50 dark:hover:border-primary/50 transition-all">
+            <div class="w-full md:w-1/3 aspect-video rounded-lg bg-cover bg-center"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQmXgqVb1fLdI3Y_6kR5b-C6j8nJ8cQ_Zk_9gZz_T3wR_8pQ_V2v8pW-O7pT1w_L8j_Q1f_T3vW-X1pP_M1rZ_R9eJ_F2y_X3k");'>
+            </div>
+            <div class="flex-1 flex flex-col justify-between gap-4">
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Aventura Mágica de Matemáticas</h3>
+                <p class="text-slate-600 dark:text-slate-400 mt-1">
+                  Únete a una misión para aprender suma y resta a través de historias y juegos divertidos.
+                  Perfecto para grados iniciales (K-2).
+                </p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span class="text-xs font-medium bg-primary/10 text-primary py-1 px-2.5 rounded-full">Descripciones de audio</span>
+                  <span class="text-xs font-medium bg-primary/10 text-primary py-1 px-2.5 rounded-full">Modo de alto contraste</span>
+                </div>
+              </div>
+              <a href="#"
+                class="inline-flex items-center justify-center self-start rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+                Comenzar
+              </a>
+            </div>
+          </article>
+
+          <!-- Curso 2 -->
+          <article
+            class="flex flex-col md:flex-row items-start gap-6 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200/80 dark:border-slate-800/80 hover:border-primary/50 dark:hover:border-primary/50 transition-all">
+            <div class="w-full md:w-1/3 aspect-video rounded-lg bg-cover bg-center"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD3P_X6f_Q_V3g_R3j_X3e_V3g_R3j_X3e_V3g_R3j_X3e_V3g_R3j_X3e");'>
+            </div>
+            <div class="flex-1 flex flex-col justify-between gap-4">
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Exploradores de Ciencias: Biología en el Jardín</h3>
+                <p class="text-slate-600 dark:text-slate-400 mt-1">
+                  Descubre las increíbles plantas y animales que viven justo afuera de tu casa.
+                  Un curso interactivo de ciencias para 3° a 5° grado.
+                </p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span class="text-xs font-medium bg-primary/10 text-primary py-1 px-2.5 rounded-full">Compatible con lector de pantalla</span>
+                  <span class="text-xs font-medium bg-primary/10 text-primary py-1 px-2.5 rounded-full">Subtítulos disponibles</span>
+                </div>
+              </div>
+              <a href="#"
+                class="inline-flex items-center justify-center self-start rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+                Explorar
+              </a>
+            </div>
+          </article>
+
+          <!-- Curso 3 -->
+          <article
+            class="flex flex-col md:flex-row items-start gap-6 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200/80 dark:border-slate-800/80 hover:border-primary/50 dark:hover:border-primary/50 transition-all">
+            <div class="w-full md:w-1/3 aspect-video rounded-lg bg-cover bg-center"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDX_V3g_R3j_X3e_V3g_R3j_X3e_V3g_R3j_X3e_V3g_R3j_X3e");'>
+            </div>
+            <div class="flex-1 flex flex-col justify-between gap-4">
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Viaje en el Tiempo: Civilizaciones Antiguas</h3>
+                <p class="text-slate-600 dark:text-slate-400 mt-1">
+                  Viaja en el tiempo para explorar el antiguo Egipto, Roma y Grecia.
+                  Un curso de historia para secundaria (6° a 8° grado).
+                </p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span class="text-xs font-medium bg-primary/10 text-primary py-1 px-2.5 rounded-full">Formatos alternativos</span>
+                  <span class="text-xs font-medium bg-primary/10 text-primary py-1 px-2.5 rounded-full">Navegable con teclado</span>
+                </div>
+              </div>
+              <a href="#"
+                class="inline-flex items-center justify-center self-start rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+                Comenzar viaje
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="main.js"></script>
+
+  </body>
+</html>
