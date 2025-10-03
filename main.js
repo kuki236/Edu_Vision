@@ -39,7 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+    const btnComienza = document.querySelector('.botonComienza');
 
+    if (btnComienza) {
+        btnComienza.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            mostrarSeccion("login"); 
+        });
+    }
     const btnAjustes = document.getElementById('btnAjustes');
     if (btnAjustes) {
         btnAjustes.addEventListener('click', function() {
@@ -55,15 +62,31 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById("btnVolverDashboard").addEventListener("click", () => {
-        mostrarSeccion("dashboard");
+        mostrarSeccion("dashboardDocente");
     });
     
     const btnRegresarADashboard = document.getElementById("btnRegresarADashboard");
     if (btnRegresarADashboard) {
         btnRegresarADashboard.addEventListener("click", () => {
-            mostrarSeccion("dashboard"); 
+            mostrarSeccion("dashboardDocente"); 
         });
     }
+      const linkSubirRecurso = document.querySelector('a.subirRecurso');
 
+      if (linkSubirRecurso) {
+          linkSubirRecurso.addEventListener("click", (e) => {
+              e.preventDefault();
+              
+              const id = linkSubirRecurso.getAttribute("href").substring(1); 
+              mostrarSeccion(id);
+          });
+      }
+      const logoutBtn = document.getElementById('logoutBtn');
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            mostrarSeccion("login");
+        });
+    }
     mostrarSeccion("inicio");
 });
