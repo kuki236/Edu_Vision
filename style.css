@@ -1,62 +1,38 @@
-/* Tipografía base (Lexend cargada desde Google Fonts en head) */
-:root{
-  --primary: #0d59f2;
-  --bg: #f5f6f8;
-  --text: #0f172a;
-}
-html,body{
-  height:100%;
-  background-color:var(--bg);
-  color:var(--text);
-  font-family: 'Lexend', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  margin:0;
-}
-
-/* Secciones ocultas por defecto */
-.section {
-  display: none;
-}
-
-/* Sección activa visible */
-.section.active {
-  display: block;
-}
-
-/* Estilo "piola" para botones del menú */
-.nav-btn {
-  background-color: #e6eefc;
-  color: #0b4bd6;
-  padding: 0.45rem 0.9rem;
-  border-radius: 0.5rem;
-  font-weight: 700;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: background-color 0.16s ease, color 0.16s ease, transform 0.08s ease;
-}
-
-.nav-btn:hover {
-  background-color: #3b82f6;
-  color: #fff;
-  transform: translateY(-1px);
-}
-
-.nav-btn.active {
-  background-color: #2563eb;
-  color: #fff;
-  box-shadow: 0 6px 18px rgba(37,99,235,0.15);
-}
-
-/* Botones y inputs: pequeños ajustes */
-button, input[type="button"], input[type="submit"]{
-  font-family: inherit;
-}
-
-input[type="text"], textarea, input[type="file"]{
-  font-family: inherit;
-}
-
-/* Ajustes responsivos sencillos */
 @media (max-width: 720px){
-  .nav-btn { padding: 0.4rem 0.7rem; font-size: 0.95rem; }
-  main { padding-left: 1rem; padding-right: 1rem; }
+    .nav-btn { padding: 0.4rem 0.7rem; font-size: 0.95rem; }
+    main { padding-left: 1rem; padding-right: 1rem; }
+}
+
+.botonComienza{
+    margin-top:-70px;
+}
+
+#inputSubirCurso form {
+    background-color: white !important;
+}
+
+#inputSubirCurso form input[type="text"],
+#inputSubirCurso form textarea {
+    color: #1f2937 !important;
+}
+
+#inputSubirCurso form input::placeholder,
+#inputSubirCurso form textarea::placeholder {
+    color: #292c33 !important;
+    opacity: 1;
+}
+
+#inputSubirCurso h2,
+#inputSubirCurso label,
+#inputSubirCurso legend {
+    color: #1f2937 !important;
+    font-weight: 700 !important;
+}
+
+.textN{
+    color: aliceblue !important;
+}
+
+.textB{
+    color: #1f2937 !important;
 }
