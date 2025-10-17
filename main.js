@@ -207,6 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
     actualizarBotonNavbar();
     inicializarPreferenciasAccesibilidad();
     configurarTogglesAccesibilidad();
+
     mostrarSeccion("inicio");
 });
     function inicializarPreferenciasAccesibilidad() {
@@ -238,7 +239,40 @@ function aplicarPreferenciasAToggles(preferencias) {
     if (toggles.navegacionVoz) toggles.navegacionVoz.checked = preferencias.navegacionVoz;
     if (toggles.respuestaHaptica) toggles.respuestaHaptica.checked = preferencias.respuestaHaptica;
 }
+function abrirModalRegreso() {
+  const modal = document.getElementById('modalRegreso');
+  modal.classList.remove('hidden');
+  setTimeout(() => modal.classList.add('opacity-100'), 10);
+}
 
+function cerrarModalRegreso() {
+  const modal = document.getElementById('modalRegreso');
+  modal.classList.remove('opacity-100');
+  setTimeout(() => modal.classList.add('hidden'), 200);
+}
+
+function confirmarRegreso() {
+  document.getElementById('lectorInmersivo').classList.add('hidden');
+  document.getElementById('dashboardAlumno').classList.remove('hidden');
+  cerrarModalRegreso();
+}
+  function abrirModalRegresoDocente() {
+    const modal = document.getElementById('modalRegresoDocente');
+    modal.classList.remove('hidden');
+    setTimeout(() => modal.classList.add('opacity-100'), 10);
+  }
+
+  function cerrarModalRegresoDocente() {
+    const modal = document.getElementById('modalRegresoDocente');
+    modal.classList.remove('opacity-100');
+    setTimeout(() => modal.classList.add('hidden'), 200);
+  }
+
+  function confirmarRegresoDocente() {
+    document.getElementById('inputSubirCurso').classList.add('hidden');
+    document.getElementById('dashboardDocente').classList.remove('hidden');
+    cerrarModalRegresoDocente();
+  }
 // Configurar event listeners para todos los toggles
 function configurarTogglesAccesibilidad() {
     // Obtener todos los toggles de accesibilidad
