@@ -36,3 +36,43 @@
 .textB{
     color: #1f2937 !important;
 }
+
+.opcion-quiz {
+    transition: all 0.3s ease;
+}
+
+.opcion-quiz:hover:not(.border-red-500):not(.border-green-500) {
+    transform: translateX(4px);
+}
+
+#barraProgreso {
+    transition: width 0.5s ease-in-out;
+}
+
+/* Scrollbar personalizado para la transcripción */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #1e293b;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+/* Efecto hover en el poster del video */
+.aspect-video > div {
+    transition: transform 0.3s ease;
+}
+
+.aspect-video:hover > div {
+    transform: scale(1.02);
+}

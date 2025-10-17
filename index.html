@@ -42,7 +42,10 @@
   <body
     class="bg-background font-display text-slate-200 min-h-screen flex flex-col"
   >
-    <!-- NAVBAR -->
+  
+  <!-- Aquí agregamos las migas de pan -->
+  <div id="migasDePan" aria-label="Migas de pan" style="padding: 10px 20px; font-size: 0.9rem; background: #f0f0f0; color: #333;"></div>
+
     <header
       class="sticky top-0 z-10 border-b border-slate-800 bg-background/90 backdrop-blur-sm"
     >
@@ -70,7 +73,9 @@
           <a class="text-sm font-medium hover:text-primary" href="#inicio">Inicio</a>
           <a class="text-sm font-medium hover:text-primary" href="#cursos">Cursos</a>
           <a class="text-sm font-medium hover:text-primary" href="#docente">Docente</a>
+          <!-- Botón dinámico Login/Logout -->
           <a
+            id="btnLoginLogout"
             class="text-sm font-medium px-4 py-2 rounded-lg bg-button hover:bg-slate-700 transition"
             href="#login"
             >Login</a
@@ -78,12 +83,11 @@
         </nav>
 
         <div class="flex items-center gap-3">
-                  <button id="btnAjustes" class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 hover:bg-slate-700 transition">
-                    <span class="material-symbols-outlined text-xl text-slate-300">
-                        settings
-                    </span>
-                </button>
-
+          <button id="btnAjustes" class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 hover:bg-slate-700 transition">
+            <span class="material-symbols-outlined text-xl text-slate-300">
+                settings
+            </span>
+          </button>
         </div>
       </div>
     </header>
@@ -699,8 +703,8 @@
                 <section>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Acceso Rápido</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <button class="dark:bg-background-dark/80 text-gray-700 dark:text-gray-200 font-bold py-4 px-6 rounded-lg text-center hover:bg-gray-100 dark:hover:bg-background-dark transition-colors shadow-sm">
-                            Mis cursos
+                        <button onclick="mostrarSeccion('listaCursosAlumno')" class="dark:bg-background-dark/80 text-gray-700 dark:text-gray-200 font-bold py-4 px-6 rounded-lg text-center hover:bg-gray-100 dark:hover:bg-background-dark transition-colors shadow-sm">
+                          Mis cursos
                         </button>
                         <button class="dark:bg-background-dark/80 text-gray-700 dark:text-gray-200 font-bold py-4 px-6 rounded-lg text-center hover:bg-gray-100 dark:hover:bg-background-dark transition-colors shadow-sm">
                             Descargas
@@ -913,6 +917,556 @@
     </div>
 </section>
 <script src="main.js"></script>
+<!-- SECCIÓN: Lista de Cursos del Alumno -->
+<!-- SECCIÓN: Dashboard Alumno (visible al regresar) -->
+<section id="dashboardAlumno" class="section bg-[#111827] min-h-screen text-white flex items-center justify-center">
+  <h1 class="text-3xl font-bold">Bienvenido al Dashboard del Alumno</h1>
+</section>
+
+<!-- SECCIÓN: Lector Inmersivo -->
+<section id="lectorInmersivo" class="section hidden bg-[#1a1d29] min-h-screen">
+  <!-- Navbar -->
+  <div class="bg-[#252836] border-b border-slate-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6 text-slate-300">
+          <a href="#" onclick="mostrarSeccion('listaCursosAlumno')" class="hover:text-white">Lista de Cursos</a>
+          <a href="#" class="text-white font-medium">Lector Inmersivo</a>
+          <a href="#" onclick="mostrarSeccion('recomendaciones')" class="hover:text-white">Recomendaciones</a>
+        </div>
+
+        <!-- 🧭 BOTÓN REGRESAR -->
+        <button 
+          onclick="abrirModalRegreso()" 
+          class="text-slate-300 hover:text-white bg-slate-700 px-4 py-2 rounded-lg transition">
+          ← Regresar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header con título -->
+    <div class="mb-6">
+      <h1 class="text-4xl font-bold text-white mb-2">Lector inmersivo</h1>
+      <p class="text-slate-400 text-lg">Lección 1: Introducción al Braille</p>
+    </div>
+
+    <!-- Layout de dos columnas -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- COLUMNA IZQUIERDA: Video y Audio -->
+      <div class="space-y-6">
+        
+        <!-- Card de Video -->
+        <div class="bg-[#252836] rounded-xl p-6">
+          <div class="mb-4">
+            <h2 class="text-2xl font-bold text-white mb-1">Introducción al Braille</h2>
+            <p class="text-slate-400">Dr. Eleanor Vance</p>
+          </div>
+          
+          <!-- Imagen/Poster del video -->
+          <div class="bg-[#e8dcc4] rounded-lg overflow-hidden mb-4 aspect-video flex items-center justify-center">
+            <div class="w-32 h-40 border-4 border-[#8b7355] rounded bg-[#f5f0e8]"></div>
+          </div>
+          
+          <!-- Barra de reproducción -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 text-white text-sm">
+              <span id="tiempoActual">1:17</span>
+              <div class="flex-1 bg-slate-700 rounded-full h-1.5 relative cursor-pointer" onclick="clickEnBarra(event)">
+                <div id="barraReproduccion" class="bg-cyan-400 h-full rounded-full relative" style="width: 35%">
+                  <div class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-cyan-400 rounded-full shadow-lg"></div>
+                </div>
+              </div>
+              <span id="tiempoTotal">2:23</span>
+            </div>
+            
+            <!-- Controles de reproducción -->
+            <div class="flex items-center justify-center gap-4">
+              <button onclick="retroceder15()" class="text-slate-400 hover:text-white transition">
+                <span class="material-symbols-outlined text-2xl">fast_rewind</span>
+              </button>
+              <button onclick="toggleReproduccion()" class="bg-cyan-400 hover:bg-cyan-500 rounded-full w-14 h-14 flex items-center justify-center transition">
+                <span id="iconoReproduccion" class="material-symbols-outlined text-4xl text-white">play_arrow</span>
+              </button>
+              <button onclick="adelantar15()" class="text-slate-400 hover:text-white transition">
+                <span class="material-symbols-outlined text-2xl">fast_forward</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Video oculto -->
+          <video 
+            id="videoClase" 
+            class="hidden"
+            ontimeupdate="actualizarBarraProgreso()"
+            onended="reproduccionTerminada()">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+          </video>
+          
+          <!-- Audio oculto -->
+          <audio 
+            id="audioClase" 
+            class="hidden"
+            ontimeupdate="actualizarBarraProgreso()"
+            onended="reproduccionTerminada()">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+
+      </div>
+
+      <!-- COLUMNA DERECHA: Transcripción -->
+      <div class="bg-[#252836] rounded-xl p-6">
+        <h3 class="text-2xl font-bold text-white mb-6">Transcription</h3>
+        
+        <div class="text-slate-300 space-y-4 leading-relaxed max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+          <p>
+            Braille is a tactile writing system used by people who are blind or visually impaired...
+          </p>
+        </div>
+        
+        <!-- Botón de acción -->
+        <div class="mt-6 pt-6 border-t border-slate-700">
+          <button 
+            onclick="mostrarMiniFormulario()" 
+            class="w-full bg-cyan-400 hover:bg-cyan-500 text-black font-bold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+            Siguiente: Evaluación 
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 🪟 MODAL DE CONFIRMACIÓN -->
+<div id="modalRegreso" class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center z-50 transition-opacity duration-300">
+  <div class="bg-[#252836] rounded-2xl p-8 text-center max-w-sm w-full shadow-xl border border-slate-700">
+    <h2 class="text-xl font-bold text-white mb-4">¿Estás seguro de volver al dashboard?</h2>
+    <div class="flex justify-center gap-4 mt-6">
+      <button 
+        onclick="confirmarRegreso()" 
+        class="bg-cyan-400 hover:bg-cyan-500 text-black font-semibold px-6 py-2 rounded-lg transition">
+        Sí, volver
+      </button>
+      <button 
+        onclick="cerrarModalRegreso()" 
+        class="bg-slate-600 hover:bg-slate-500 text-white px-6 py-2 rounded-lg transition">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- SECCIÓN: Recursos del Curso (index2.html) -->
+<section id="recursosCurso" class="section hidden bg-slate-900 min-h-screen">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <button onclick="volverListaCursos()" class="mb-6 text-primary hover:text-primary/80 flex items-center gap-2">
+      ← Volver a mis cursos
+    </button>
+    <h1 class="text-4xl font-bold text-white mb-4">Recursos del curso</h1>
+    <p class="text-slate-400 mb-12">Encuentre y descargue materiales para sus cursos. Todos los recursos están diseñados para ser accesibles.</p>
+    
+    <div class="space-y-8">
+      <div>
+        <h2 class="text-2xl font-bold text-white mb-6">Materiales descargables</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-slate-800 rounded-lg p-6">
+            <h3 class="text-lg font-bold text-white mb-2">Transcripciones de las lecciones</h3>
+            <p class="text-slate-400 text-sm mb-4">Texto completo de todas las lecciones en video. (DOCX, PDF)</p>
+            <button onclick="abrirLectorInmersivo()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90">Leer ahora</button>
+          </div>
+          
+          <div class="bg-slate-800 rounded-lg p-6">
+            <h3 class="text-lg font-bold text-white mb-2">Lecciones en audio</h3>
+            <p class="text-slate-400 text-sm mb-4">Descargue todas las lecciones en formato de audio. (MP3)</p>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90">Descargar</button>
+          </div>
+          
+          <div class="bg-slate-800 rounded-lg p-6">
+            <h3 class="text-lg font-bold text-white mb-2">Hojas de trabajo accesibles</h3>
+            <p class="text-slate-400 text-sm mb-4">Hojas de trabajo compatibles con lectores de pantalla. (DOCX)</p>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90">Descargar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN: Lector Inmersivo (index1.html) -->
+<section id="lectorInmersivo" class="section hidden bg-[#1a1d29] min-h-screen">
+  <!-- Navbar -->
+  <div class="bg-[#252836] border-b border-slate-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-6 text-slate-300">
+          <a href="#" onclick="mostrarSeccion('listaCursosAlumno')" class="hover:text-white">Lista de Cursos</a>
+          <a href="#" class="text-white font-medium">Lector Inmersivo</a>
+          <a href="#" onclick="mostrarSeccion('recomendaciones')" class="hover:text-white">Recomendaciones</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header con título -->
+    <div class="mb-6">
+      <h1 class="text-4xl font-bold text-white mb-2">Lector inmersivo</h1>
+      <p class="text-slate-400 text-lg">Lección 1: Introducción al Braille</p>
+    </div>
+
+    <!-- Layout de dos columnas -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- COLUMNA IZQUIERDA: Video y Audio -->
+      <div class="space-y-6">
+        
+        <!-- Card de Video -->
+        <div class="bg-[#252836] rounded-xl p-6">
+          <div class="mb-4">
+            <h2 class="text-2xl font-bold text-white mb-1">Introducción al Braille</h2>
+            <p class="text-slate-400">Dr. Eleanor Vance</p>
+          </div>
+          
+          <!-- Imagen/Poster del video -->
+          <div class="bg-[#e8dcc4] rounded-lg overflow-hidden mb-4 aspect-video flex items-center justify-center">
+            <div class="w-32 h-40 border-4 border-[#8b7355] rounded bg-[#f5f0e8]"></div>
+          </div>
+          
+          <!-- Barra de reproducción -->
+          <div class="space-y-4">
+            <!-- Progress bar -->
+            <div class="flex items-center gap-3 text-white text-sm">
+              <span id="tiempoActual">1:17</span>
+              <div class="flex-1 bg-slate-700 rounded-full h-1.5 relative cursor-pointer" onclick="clickEnBarra(event)">
+                <div id="barraReproduccion" class="bg-cyan-400 h-full rounded-full relative" style="width: 35%">
+                  <div class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-cyan-400 rounded-full shadow-lg"></div>
+                </div>
+              </div>
+              <span id="tiempoTotal">2:23</span>
+            </div>
+            
+            <!-- Controles de reproducción -->
+            <div class="flex items-center justify-center gap-4">
+              <button onclick="retroceder15()" class="text-slate-400 hover:text-white transition">
+                <span class="material-symbols-outlined text-2xl">fast_rewind</span>
+              </button>
+              <button onclick="toggleReproduccion()" class="bg-cyan-400 hover:bg-cyan-500 rounded-full w-14 h-14 flex items-center justify-center transition">
+                <span id="iconoReproduccion" class="material-symbols-outlined text-4xl text-white">play_arrow</span>
+              </button>
+              <button onclick="adelantar15()" class="text-slate-400 hover:text-white transition">
+                <span class="material-symbols-outlined text-2xl">fast_forward</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Video oculto (para funcionalidad real) -->
+          <video 
+            id="videoClase" 
+            class="hidden"
+            ontimeupdate="actualizarBarraProgreso()"
+            onended="reproduccionTerminada()">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+          </video>
+          
+          <!-- Audio oculto -->
+          <audio 
+            id="audioClase" 
+            class="hidden"
+            ontimeupdate="actualizarBarraProgreso()"
+            onended="reproduccionTerminada()">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+
+      </div>
+
+      <!-- COLUMNA DERECHA: Transcripción -->
+      <div class="bg-[#252836] rounded-xl p-6">
+        <h3 class="text-2xl font-bold text-white mb-6">Transcription</h3>
+        
+        <div class="text-slate-300 space-y-4 leading-relaxed max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+          <p>
+            Braille is a tactile writing system used by people who are blind or visually impaired. It consists of 
+            <span class="text-cyan-400 font-semibold">raised dots</span> arranged in cells of six dots each, 
+            representing letters, numbers, and punctuation marks. This system allows individuals with visual 
+            impairments to read and write by feeling the raised dots with their fingertips.
+          </p>
+          
+          <p>
+            Braille is read by moving one's fingertips from left to right across each line of cells. Each cell 
+            represents a character, and the arrangement of dots within the cell determines the character's identity. 
+            The Braille alphabet is based on a system of 63 characters, each formed by a combination of one to 
+            six raised dots. These characters include letters, numbers, punctuation marks, and other symbols.
+          </p>
+          
+          <p>
+            Braille is not a language but rather a code that can be used to write in many different languages. 
+            It has been adapted to various alphabets and writing systems around the world, making it a versatile 
+            tool for communication and literacy.
+          </p>
+          
+          <p>
+            Braille is essential for education, employment, and daily life for people with visual impairments. 
+            It provides access to a wide range of materials, including books, documents, and signage, enabling 
+            individuals to participate fully in society.
+          </p>
+          
+          <p>
+            Learning Braille can empower individuals with visual impairments, fostering independence and 
+            enhancing their quality of life.
+          </p>
+        </div>
+        
+        <!-- Botón de acción -->
+        <div class="mt-6 pt-6 border-t border-slate-700">
+          <button 
+            onclick="mostrarMiniFormulario()" 
+            class="w-full bg-cyan-400 hover:bg-cyan-500 text-black font-bold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
+            Siguiente: Evaluación 
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN: Mini Formulario/Quiz (index4.html) -->
+<section id="miniFormulario" class="section hidden bg-[#1a1d29] min-h-screen">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Contenedor del Quiz -->
+    <div class="bg-[#252836] rounded-2xl p-8 shadow-2xl max-w-2xl mx-auto">
+      
+      <!-- Barra de progreso -->
+      <div class="mb-8" 
+           tabindex="0" 
+           role="status" 
+           aria-live="polite"
+           onmouseover="leerTexto(this)"
+           onfocus="leerTexto(this)"
+           onblur="detenerLectura(this)"
+           onmouseleave="detenerLectura(this)">
+        <p class="text-center text-slate-300 mb-3 font-medium">
+          Pregunta <span id="preguntaActual">5</span> de <span id="totalPreguntas">10</span>
+        </p>
+        <div class="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
+          <div id="barraProgreso" class="bg-yellow-500 h-full rounded-full transition-all duration-300" style="width: 50%"></div>
+        </div>
+      </div>
+
+      <!-- Pregunta -->
+      <div id="quizContainer">
+        <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-8 leading-tight"
+            tabindex="0"
+            role="heading"
+            aria-level="2"
+            onmouseover="leerTexto(this)"
+            onfocus="leerTexto(this)"
+            onblur="detenerLectura(this)"
+            onmouseleave="detenerLectura(this)">
+          Which of the following is NOT a common assistive technology for visually impaired individuals?
+        </h2>
+
+
+        <!-- Opciones de respuesta -->
+        <div class="space-y-4 mb-8" role="radiogroup" aria-labelledby="pregunta">
+          <button 
+            tabindex="0"
+            role="radio"
+            aria-checked="false"
+            aria-label="Opción A: Screen readers"
+            onmouseover="leerTexto(this)"
+            onfocus="leerTexto(this)"
+            onblur="detenerLectura(this)"
+            onmouseleave="detenerLectura(this)"
+            onclick="seleccionarRespuesta(this, 'Screen readers', false)" 
+            class="opcion-quiz w-full bg-slate-700 hover:bg-slate-600 text-white text-left px-6 py-4 rounded-xl flex items-center gap-4 transition-all border-2 border-transparent">
+            <span class="w-6 h-6 rounded-full border-2 border-slate-400 flex-shrink-0"></span>
+            <span class="text-lg">Screen readers</span>
+          </button>
+
+          <button 
+            tabindex="0"
+            role="radio"
+            aria-checked="false"
+            aria-label="Opción B: Braille displays"
+            onmouseover="leerTexto(this)"
+            onfocus="leerTexto(this)"
+            onblur="detenerLectura(this)"
+            onmouseleave="detenerLectura(this)"
+            onclick="seleccionarRespuesta(this, 'Braille displays', false)" 
+            class="opcion-quiz w-full bg-slate-700 hover:bg-slate-600 text-white text-left px-6 py-4 rounded-xl flex items-center gap-4 transition-all border-2 border-transparent">
+            <span class="w-6 h-6 rounded-full border-2 border-slate-400 flex-shrink-0"></span>
+            <span class="text-lg">Braille displays</span>
+          </button>
+
+          <button 
+            tabindex="0"
+            role="radio"
+            aria-checked="false"
+            aria-label="Opción C: Holographic projectors"
+            onmouseover="leerTexto(this)"
+            onfocus="leerTexto(this)"
+            onblur="detenerLectura(this)"
+            onmouseleave="detenerLectura(this)"
+            onclick="seleccionarRespuesta(this, 'Holographic projectors', false)" 
+            class="opcion-quiz w-full bg-slate-700 hover:bg-slate-600 text-white text-left px-6 py-4 rounded-xl flex items-center gap-4 transition-all border-2 border-transparent">
+            <span class="w-6 h-6 rounded-full border-2 border-slate-400 flex-shrink-0"></span>
+            <span class="text-lg">Holographic projectors</span>
+          </button>
+
+          <button 
+            tabindex="0"
+            role="radio"
+            aria-checked="false"
+            aria-label="Opción D: Magnifying glasses"
+            onmouseover="leerTexto(this)"
+            onfocus="leerTexto(this)"
+            onblur="detenerLectura(this)"
+            onmouseleave="detenerLectura(this)"
+            onclick="seleccionarRespuesta(this, 'Magnifying glasses', true)" 
+            class="opcion-quiz w-full bg-slate-700 hover:bg-slate-600 text-white text-left px-6 py-4 rounded-xl flex items-center gap-4 transition-all border-2 border-transparent">
+            <span class="w-6 h-6 rounded-full border-2 border-slate-400 flex-shrink-0"></span>
+            <span class="text-lg">Magnifying glasses</span>
+          </button>
+        </div>
+
+        <!-- Mensaje de retroalimentación -->
+        <div id="mensajeRetroalimentacion" 
+             class="hidden mb-6" 
+             role="alert" 
+             aria-live="assertive"
+             tabindex="0"
+             onmouseover="leerTexto(this)"
+             onfocus="leerTexto(this)"
+             onblur="detenerLectura(this)"
+             onmouseleave="detenerLectura(this)">
+        </div>
+
+        <!-- Botón siguiente -->
+        <button 
+          id="btnSiguientePregunta" 
+          tabindex="0"
+          aria-label="Ir a la siguiente pregunta"
+          onclick="siguientePregunta()" 
+          class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-4 rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled>
+          Siguiente pregunta
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- SECCIÓN: Encuesta de Satisfacción (index5.html) -->
+<section id="encuestaSatisfaccion" class="section hidden bg-slate-900 min-h-screen">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-slate-800 rounded-lg p-8">
+      <h1 class="text-3xl font-bold text-white mb-4">Encuesta de satisfacción con el curso</h1>
+      <p class="text-slate-400 mb-8">Sus comentarios nos ayudan a mejorar nuestros cursos. Por favor, responda honestamente las siguientes preguntas.</p>
+      
+      <form class="space-y-6" onsubmit="event.preventDefault(); completarEncuesta();">
+        <div>
+          <label class="block text-white font-medium mb-2">Seleccione el curso</label>
+          <select class="w-full bg-slate-700 text-white px-4 py-2 rounded-lg border border-slate-600 focus:border-primary">
+            <option>Introducción al Braille</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-white font-medium mb-2">¿Qué fue lo que más le gustó del curso?</label>
+          <textarea class="w-full bg-slate-700 text-white px-4 py-3 rounded-lg border border-slate-600 focus:border-primary" rows="4" placeholder="p. ej., las explicaciones claras, los ejemplos prácticos..."></textarea>
+        </div>
+        
+        <div>
+          <label class="block text-white font-medium mb-2">¿Qué se podría mejorar?</label>
+          <textarea class="w-full bg-slate-700 text-white px-4 py-3 rounded-lg border border-slate-600 focus:border-primary" rows="4" placeholder="p. ej., más ejercicios interactivos, un ritmo diferente..."></textarea>
+        </div>
+        
+        <div>
+          <label class="block text-white font-medium mb-3">En general, ¿qué tan satisfecho/a estuvo con el curso?</label>
+          <div class="space-y-2">
+            <label class="flex items-center text-slate-300">
+              <input type="radio" name="satisfaccion" value="5" class="mr-2" required> Muy satisfecho
+            </label>
+            <label class="flex items-center text-slate-300">
+              <input type="radio" name="satisfaccion" value="4" class="mr-2"> Satisfecho
+            </label>
+            <label class="flex items-center text-slate-300">
+              <input type="radio" name="satisfaccion" value="3" class="mr-2"> Neutral
+            </label>
+            <label class="flex items-center text-slate-300">
+              <input type="radio" name="satisfaccion" value="2" class="mr-2"> Insatisfecho
+            </label>
+            <label class="flex items-center text-slate-300">
+              <input type="radio" name="satisfaccion" value="1" class="mr-2"> Muy insatisfecho
+            </label>
+          </div>
+        </div>
+        
+        <button type="submit" class="w-full bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 font-bold">
+          Enviar comentarios
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN: Recomendaciones Personalizadas (index3.html) -->
+<section id="recomendaciones" class="section hidden bg-slate-900 min-h-screen">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-4xl font-bold text-white mb-4">Recursos recomendados</h1>
+    <p class="text-slate-400 mb-8">Explore recursos adaptados a su estilo y necesidades de aprendizaje.</p>
+    
+    <div class="mb-8">
+      <input type="text" placeholder="Buscar recursos, consejos o materiales..." class="w-full bg-slate-800 text-white px-6 py-4 rounded-lg border border-slate-700 focus:border-primary">
+    </div>
+    
+    <div class="flex gap-3 mb-8">
+      <button class="px-4 py-2 bg-primary text-white rounded-lg font-medium">Todo</button>
+      <button class="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700">Recursos Optimizados</button>
+      <button class="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700">Consejos de estudio</button>
+      <button class="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700">Materiales externos</button>
+    </div>
+    
+    <div>
+      <h2 class="text-2xl font-bold text-white mb-6">Recursos destacados</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-slate-800 rounded-lg p-6">
+          <h3 class="text-xl font-bold text-white mb-2">Técnicas de estudio accesibles</h3>
+          <p class="text-slate-400 mb-4">Aprenda métodos de estudio eficaces adaptados para discapacidades visuales.</p>
+          <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90">Explorar</button>
+        </div>
+        
+        <div class="bg-slate-800 rounded-lg p-6">
+          <h3 class="text-xl font-bold text-white mb-2">Herramientas de aprendizaje inclusivas</h3>
+          <p class="text-slate-400 mb-4">Descubra herramientas y software diseñados para mejorar su experiencia de aprendizaje.</p>
+          <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90">Explorar</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-12 text-center">
+      <button onclick="volverDashboardAlumno()" class="bg-slate-800 text-white px-6 py-3 rounded-lg hover:bg-slate-700 font-bold">
+        Volver al Dashboard
+      </button>
+    </div>
+  </div>
+</section>
 
   </body>
 </html>
